@@ -9,7 +9,7 @@ router.post("/sign-up", userController.postSignUpUser);
 
 // Handlers for editing message page
 router.get("/log-in", userController.getLoginUser);
-router.get("/log-in", userController.postLoginUser);
+router.post("/log-in", userController.postLoginUser);
 
 // Handler for deleting messages
 router.post("/log-out", userController.postLogoutUser);
