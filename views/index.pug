@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1= title
+
+    ul 
+        each message in messageList 
+            li 
+                div.message-card
+                    if isLoggedIn 
+                        span.date= message.date
+                        h3= message.user.username
+                    h2= message.title 
+                    p= message.content
+                        
+
