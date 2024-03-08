@@ -32,7 +32,7 @@ exports.postSignUpUser = asyncHandler(async (req, res, next) => {
 });
 
 exports.getLoginUser = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: user login page");
+	res.render("log_in_page", { title: "Log In" });
 });
 
 exports.postLoginUser = asyncHandler(async (req, res, next) => {
