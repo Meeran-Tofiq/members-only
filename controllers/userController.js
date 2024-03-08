@@ -1,10 +1,10 @@
 const asyncHandler = require("express-async-handler");
 
-exports.getCreateUser = asyncHandler(async (req, res, next) => {
+exports.getSignUpUser = asyncHandler(async (req, res, next) => {
 	res.send("NOT IMPLEMENTED: user sign up page");
 });
 
-exports.postCreateUser = asyncHandler(async (req, res, next) => {
+exports.postSignUpUser = asyncHandler(async (req, res, next) => {
 	res.send("NOT IMPLEMENTED: user sign up post");
 });
 
