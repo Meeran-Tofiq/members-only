@@ -11,7 +11,24 @@ exports.getSignUpUser = asyncHandler(async (req, res, next) => {
 });
 
 exports.postSignUpUser = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: user sign up post");
+	try {
+		bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+			if (err) return next(err);
+
+			const user = new User({
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				username: req.body.username,
+				password: hashedPassword,
+				status: "guest",
+			});
+
+			await user.save();
+			res.redirect("/");
+		});
+	} catch (error) {
+		return next(error);
+	}
 });
 
 exports.getLoginUser = asyncHandler(async (req, res, next) => {
