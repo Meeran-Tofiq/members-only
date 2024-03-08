@@ -1,0 +1,12 @@
+extends layout
+
+block content 
+    h1 Log In
+    form(action="" method="POST")
+        label(for="username") Username
+        input#username(name="username" placeholder="Username" type="text")
+
+        label(for="password") Password
+        input#password(name="password" placeholder="Password" type="password")
+
+        button Log In
