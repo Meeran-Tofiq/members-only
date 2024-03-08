@@ -1,7 +1,21 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+    head
+        title= title + " | Members Only"
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        header 
+            h1 ALA Members Only
+            nav 
+                ul
+                    li
+                        a(href="/") Home
+                    li
+                        a(href="/user/sign-up") Sign Up
+                    li
+                        a(href="/user/log-in") Log In
+        main
+            block content
+        footer 
+            p Made by 
+                a(href="https://github.com/Meeran-Tofiq") Meeran Tofiq
