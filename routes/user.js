@@ -1,9 +1,17 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-/* GET users listing. */
-router.get("/", function (req, res, next) {
-	res.send("respond with a resource");
-});
+const userController = require("../controllers/userController");
+
+// Handlers for create message page
+router.get("/sign-up", userController.getSignUpUser);
+router.post("/sign-up", userController.postSignUpUser);
+
+// Handlers for editing message page
+router.get("/log-in", userController.getLoginUser);
+router.get("/log-in", userController.postLoginUser);
+
+// Handler for deleting messages
+router.post("/log-out", userController.postLogoutUser);
 
 module.exports = router;
