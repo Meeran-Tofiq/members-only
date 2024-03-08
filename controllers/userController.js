@@ -4,6 +4,37 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
 
+passport.use(
+	new LocalStrategy(async (username, password, done) => {
+		try {
+			const user = await User.findOne({ username }).exec();
+
+			if (!user) return done(null, false, "Incorrect username");
+			else {
+				const match = await bcrypt.compare(password, user.password);
+				if (!match) return done(null, false, "Incorrect password");
+			}
+
+			return done(null, user);
+		} catch (err) {
+			return done(err);
+		}
+	})
+);
+
+passport.serializeUser((user, done) => {
+	done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+	try {
+		const user = await User.findById(id);
+		done(null, user);
+	} catch (err) {
+		done(err);
+	}
+});
+
 exports.getSignUpUser = asyncHandler(async (req, res, next) => {
 	res.render("sign_up_form", {
 		title: "Sign Up",
@@ -35,8 +66,9 @@ exports.getLoginUser = asyncHandler(async (req, res, next) => {
 	res.render("log_in_page", { title: "Log In" });
 });
 
-exports.postLoginUser = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: user login post");
+exports.postLoginUser = passport.authenticate("local", {
+	successRedirect: "/",
+	failureRedirect: "/user/log-in",
 });
 
 exports.getLogoutUser = asyncHandler(async (req, res, next) => {
