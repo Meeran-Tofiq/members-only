@@ -71,10 +71,11 @@ exports.postLoginUser = passport.authenticate("local", {
 	failureRedirect: "/user/log-in",
 });
 
-exports.getLogoutUser = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: user logout page");
-});
-
-exports.postLogoutUser = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: user logout post");
-});
+exports.postLogoutUser = (req, res, next) => {
+	req.logout((err) => {
+		if (err) {
+			return next(err);
+		}
+		res.redirect("/");
+	});
+};
