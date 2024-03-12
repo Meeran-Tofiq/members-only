@@ -17,6 +17,10 @@ block content
                     if isLoggedIn 
                         span.date= message.date
                         h3= message.user.username
+                        if message.user._id.toString() === currentUser.id 
+                            a(href=message.url + "/edit") Edit
+                        if currentUser.status === "member"
+                            a(href=message.url + "/delete") Delete 
                     h2= message.title 
                     p= message.content
                         
