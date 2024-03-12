@@ -16,7 +16,9 @@ exports.getMessageList = asyncHandler(async (req, res, next) => {
 });
 
 exports.getCreateMessage = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: create message page");
+	res.render("message_form", {
+		title: "Create a Message",
+	});
 });
 
 exports.postCreateMessage = asyncHandler(async (req, res, next) => {
