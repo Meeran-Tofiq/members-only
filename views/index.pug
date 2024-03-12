@@ -4,9 +4,12 @@ block content
     h1= title
 
     .welcome-user 
-        h2= "Welcome, " + currentUser.username
-        span Would you like to write a message? 
-        a(href="/message/create") Create a message
+        if(currentUser)
+            h2= "Welcome, " + currentUser.username
+            span Would you like to write a message? 
+            a(href="/message/create") Create a message
+        else 
+            h2= "Welcome, guest"
     ul
         each message in messageList 
             li 
