@@ -3,6 +3,7 @@ const User = require("../models/user");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
+const { body, validationResult } = require("express-validator");
 
 passport.use(
 	new LocalStrategy(async (username, password, done) => {
@@ -41,26 +42,44 @@ exports.getSignUpUser = asyncHandler(async (req, res, next) => {
 	});
 });
 
-exports.postSignUpUser = asyncHandler(async (req, res, next) => {
-	try {
-		bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-			if (err) return next(err);
+exports.postSignUpUser = [
+	body("firstName", "First name must be more than 3 letters long.")
+		.trim()
+		.isLength({ min: 3 })
+		.escape(),
+	body("lastName", "First name must be more than 3 letters long.")
+		.trim()
+		.isLength({ min: 3 })
+		.escape(),
+	body("lastName", "First name must be more than 3 letters long.")
+		.trim()
+		.isLength({ min: 3 })
+		.escape(),
+	body("lastName", "First name must be more than 3 letters long.")
+		.trim()
+		.isLength({ min: 3 })
+		.escape(),
+	asyncHandler(async (req, res, next) => {
+		try {
+			bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+				if (err) return next(err);
 
-			const user = new User({
-				firstName: req.body.firstName,
-				lastName: req.body.lastName,
-				username: req.body.username,
-				password: hashedPassword,
-				status: "guest",
+				const user = new User({
+					firstName: req.body.firstName,
+					lastName: req.body.lastName,
+					username: req.body.username,
+					password: hashedPassword,
+					status: "guest",
+				});
+
+				await user.save();
+				res.redirect("/");
 			});
-
-			await user.save();
-			res.redirect("/");
-		});
-	} catch (error) {
-		return next(error);
-	}
-});
+		} catch (error) {
+			return next(error);
+		}
+	}),
+];
 
 exports.getLoginUser = asyncHandler(async (req, res, next) => {
 	res.render("log_in_page", { title: "Log In" });
