@@ -14,4 +14,8 @@ router.post("/log-in", userController.postLoginUser);
 // Handler for deleting messages
 router.get("/log-out", userController.getLogoutUser);
 
+// Handler for changing status of user
+router.get("/status", userController.getUserStatus);
+router.post("/status", userController.postUserStatus);
+
 module.exports = router;

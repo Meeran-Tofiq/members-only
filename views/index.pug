@@ -23,5 +23,7 @@ block content
                             a(href=message.url + "/delete") Delete 
                     h2= message.title 
                     p= message.content
+    if(currentUser && currentUser.status !== "member") 
+        a(href="/user/status") I WISH TO GAIN POWER 
                         
 

@@ -98,3 +98,30 @@ exports.getLogoutUser = (req, res, next) => {
 		res.redirect("/");
 	});
 };
+
+exports.getUserStatus = asyncHandler(async (req, res, next) => {
+	if (req.user)
+		res.render("status_form", { title: "YOU WISH TO GAIN POWER???" });
+	else res.redirect("/");
+});
+
+exports.postUserStatus = [
+	body("secretPasscode").trim().escape(),
+	asyncHandler(async (req, res, next) => {
+		if (req.body.secretPasscode === "111$2222Melons") {
+			const user = new User({
+				firstName: req.user.firstName,
+				lastName: req.user.lastName,
+				username: req.user.username,
+				password: req.user.password,
+				_id: req.user.id,
+				status: "member",
+			});
+
+			console.log(req.user);
+
+			await User.findByIdAndUpdate(req.user.id, user, {});
+		}
+		res.redirect("/");
+	}),
+];
