@@ -3,7 +3,11 @@ extends layout
 block content
     h1= title
 
-    ul 
+    .welcome-user 
+        h2= "Welcome, " + currentUser.username
+        span Would you like to write a message? 
+        a(href="/message/create") Create a message
+    ul
         each message in messageList 
             li 
                 div.message-card
