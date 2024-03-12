@@ -96,6 +96,9 @@ exports.postEditMessage = [
 	}),
 ];
 
-exports.postDeleteMessage = asyncHandler(async (req, res, next) => {
-	res.send("NOT IMPLEMENTED: delete message page");
+exports.getDeleteMessage = asyncHandler(async (req, res, next) => {
+	if (req.user.status === "member") {
+		await Message.findByIdAndDelete(req.params.message_id).exec();
+		res.redirect("/");
+	}
 });

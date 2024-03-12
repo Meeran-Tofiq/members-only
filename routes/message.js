@@ -12,6 +12,6 @@ router.get("/:message_id/edit", messageController.getEditMessage);
 router.post("/:message_id/edit", messageController.postEditMessage);
 
 // Handler for deleting messages
-router.post("/:message_id/delete", messageController.postDeleteMessage);
+router.get("/:message_id/delete", messageController.getDeleteMessage);
 
 module.exports = router;
