@@ -11,6 +11,11 @@ body {
 	background-color: black;
 }
 
+a {
+	color: wheat;
+	text-decoration: none;
+}
+
 /* 
  *
  *  Header
@@ -57,7 +62,7 @@ span.logout:hover a {
 
 /*
  *
- * Main
+ * Main - Home
  *
 */
 
@@ -77,6 +82,10 @@ main .welcome-user {
 	padding-left: 5rem;
 }
 
+main .welcome-user {
+	margin-bottom: 1.5rem;
+}
+
 main ul {
 	align-self: center;
 	list-style: none;
@@ -90,16 +99,33 @@ main li {
 	margin: 2rem 0;
 }
 
-main .message-card {
-	display: grid;
-	grid-template-rows: 1fr 2fr;
+.message-card {
+	display: flex;
+	flex-direction: column;
 
 	gap: 1rem;
 }
 
-main .message-card h2 {
+.message-card .message-header {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
 	padding: 1rem 0;
 	border-bottom: 1px solid white;
+}
+
+.message-header h2 {
+	grid-column: 1 / span 2;
+}
+
+.message-card .message-header h3,
+.message-card span.date,
+.message-card span.controls {
+	color: #646464;
+}
+
+.message-card p {
+	padding-bottom: 2rem;
 }
 
 /*
