@@ -101,3 +101,21 @@ main .message-card h2 {
 	padding: 1rem 0;
 	border-bottom: 1px solid white;
 }
+
+/*
+ *
+ * Footer
+ *
+*/
+
+footer {
+	text-align: center;
+}
+
+footer p {
+	padding: 1rem;
+}
+
+footer a {
+	color: lightcoral;
+}
