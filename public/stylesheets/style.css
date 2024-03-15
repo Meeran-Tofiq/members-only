@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	border: none;
 	box-sizing: border-box;
 }
 
@@ -9,11 +10,18 @@ body {
 	font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
 	color: white;
 	background-color: black;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 a {
 	color: wheat;
 	text-decoration: none;
+}
+
+form button {
+	background-color: rgba(0, 0, 0, 0);
 }
 
 /* 
@@ -47,7 +55,8 @@ nav ul {
 }
 
 nav li a,
-span.logout a {
+span.logout a,
+form button {
 	color: white;
 	font-size: large;
 	text-decoration: none;
@@ -55,9 +64,11 @@ span.logout a {
 }
 
 nav li a:hover,
-span.logout:hover a {
+span.logout:hover a,
+form button:hover {
 	background-color: white;
 	color: black;
+	cursor: pointer;
 }
 
 /*
@@ -68,9 +79,9 @@ span.logout:hover a {
 
 main {
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 
-	height: 100%;
 	padding: 5rem 0;
 
 	background-color: #202020;
@@ -130,12 +141,49 @@ main li {
 
 /*
  *
+ * Form
+ *
+*/
+
+form {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 1rem;
+
+	width: 50%;
+	padding: 2rem;
+	align-self: center;
+	align-items: center;
+
+	background-color: black;
+}
+
+form label {
+	font-size: larger;
+	margin-right: 1rem;
+}
+
+form input {
+	border-radius: 1rem;
+	padding: 0.5rem 1rem;
+}
+
+form button {
+	grid-column: span 2;
+	align-self: center;
+	margin-top: 1rem;
+}
+
+/*
+ *
  * Footer
  *
 */
 
 footer {
 	text-align: center;
+	bottom: 0;
+	height: fit-content;
 }
 
 footer p {
