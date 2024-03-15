@@ -1,12 +1,14 @@
 * {
 	margin: 0;
+	padding: 0;
 	box-sizing: border-box;
 }
 
 body {
 	margin: 0;
-	height: 100vh;
 	font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
+	color: white;
+	background-color: black;
 }
 
 /* 
@@ -51,4 +53,51 @@ nav li a:hover,
 span.logout:hover a {
 	background-color: white;
 	color: black;
+}
+
+/*
+ *
+ * Main
+ *
+*/
+
+main {
+	display: flex;
+	flex-direction: column;
+
+	height: 100%;
+	padding: 5rem 0;
+
+	background-color: #202020;
+}
+
+main h1,
+main .welcome-user {
+	text-align: left;
+	padding-left: 5rem;
+}
+
+main ul {
+	align-self: center;
+	list-style: none;
+	background-color: black;
+
+	padding: 2rem;
+	height: fit-content;
+}
+
+main li {
+	margin: 2rem 0;
+}
+
+main .message-card {
+	display: grid;
+	grid-template-rows: 1fr 2fr;
+
+	gap: 1rem;
+}
+
+main .message-card h2 {
+	padding: 1rem 0;
+	border-bottom: 1px solid white;
 }
