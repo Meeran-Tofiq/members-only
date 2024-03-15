@@ -14,16 +14,17 @@ block content
         each message in messageList 
             li 
                 div.message-card
-                    h2= message.title 
+                    div.message-header
+                        h2= message.title 
+                        if isLoggedIn 
+                            h3= message.user.username
+                            span.date= message.date
+                            span.controls
+                                if message.user._id.toString() === currentUser.id 
+                                    a(href=message.url + "/edit") Edit
+                                if currentUser.status === "member"
+                                    a(href=message.url + "/delete") Delete 
                     p= message.content
-
-                    if isLoggedIn 
-                        span.date= message.date
-                        h3= message.user.username
-                        if message.user._id.toString() === currentUser.id 
-                            a(href=message.url + "/edit") Edit
-                        if currentUser.status === "member"
-                            a(href=message.url + "/delete") Delete 
     if(currentUser && currentUser.status !== "member") 
         a(href="/user/status") I WISH TO GAIN POWER 
                         
