@@ -6,8 +6,12 @@ const { body, validationResult } = require("express-validator");
 exports.getMessageList = asyncHandler(async (req, res, next) => {
 	let messageList;
 	if (req.user)
-		messageList = await Message.find().limit(10).populate("user").exec();
-	else messageList = await Message.find().limit(10).exec();
+		messageList = await Message.find()
+			.sort({ date: -1 })
+			.limit(10)
+			.populate("user")
+			.exec();
+	else messageList = await Message.find().sort({ date: -1 }).limit(10).exec();
 
 	res.render("index", {
 		title: "Home",
