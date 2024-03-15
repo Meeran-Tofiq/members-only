@@ -14,6 +14,9 @@ block content
         each message in messageList 
             li 
                 div.message-card
+                    h2= message.title 
+                    p= message.content
+
                     if isLoggedIn 
                         span.date= message.date
                         h3= message.user.username
@@ -21,8 +24,6 @@ block content
                             a(href=message.url + "/edit") Edit
                         if currentUser.status === "member"
                             a(href=message.url + "/delete") Delete 
-                    h2= message.title 
-                    p= message.content
     if(currentUser && currentUser.status !== "member") 
         a(href="/user/status") I WISH TO GAIN POWER 
                         
