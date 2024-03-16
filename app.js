@@ -9,6 +9,7 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
+const compression = require("compression");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
@@ -21,6 +22,7 @@ async function main() {
 	await mongoose.connect(process.env.MONGODB_URI);
 }
 
+app.use(compression());
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
