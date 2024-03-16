@@ -16,4 +16,4 @@ It is made as a display of skills related to security, user creation, and user s
 
 # Live Preview
 
-Click the following [link]() to preview.
+Click the following [link](https://members-only-secure.adaptable.app) to preview.
